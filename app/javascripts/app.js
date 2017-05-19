@@ -68,9 +68,9 @@ window.App = {
   },
 
   checkBalance: function() {
-    var employeeAddress = document.getElementById("employeeAdd").value;
+    var employeeAddress = document.getElementById("empBalanceAdd").value;
     console.log(employeeAddress);
-    document.getElementById("employeeAdd").value='';
+    document.getElementById("empBalanceAdd").value='';
     var emp;
     EmploymentContract.deployed().then(function(instance) {
       emp = instance;
