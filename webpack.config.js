@@ -2,9 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: ['./app/javascripts/app.js',
-        './app/javascripts/bootstrap.min.js'
-    ],
+    entry: ['./app/javascripts/app.js'],
 
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -16,17 +14,18 @@ module.exports = {
         // Copy our app's index.html to the build folder.
         new CopyWebpackPlugin([
             { from: './app/index.html', to: "index.html" }
-        ]),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        })
+        ])
     ],
     module: {
         rules: [{
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader']
-        }],
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+                use: ['js-loader', 'js-loader']
+            }
+        ],
         loaders: [
             { test: /\.json$/, use: 'json-loader' },
             {
